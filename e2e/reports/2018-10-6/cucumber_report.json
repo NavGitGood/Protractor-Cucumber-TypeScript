@@ -1,0 +1,68 @@
+[
+  {
+    "description": "   Sample Feature",
+    "keyword": "Feature",
+    "name": "New Feature",
+    "line": 1,
+    "id": "new-feature",
+    "tags": [],
+    "uri": "e2e\\features\\test.feature",
+    "elements": [
+      {
+        "id": "new-feature;sample-scenario",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "sample scenario",
+        "tags": [],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "Typescript\\Protractor-Cucumber-TypeScript\\node_modules\\cucumber\\src\\support_code_library_builder\\build_helpers.js:81"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I open screen",
+            "match": {
+              "location": "Typescript\\Protractor-Cucumber-TypeScript\\node_modules\\cucumber\\src\\support_code_library_builder\\build_helpers.js:81"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4765000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "Typescript\\Protractor-Cucumber-TypeScript\\node_modules\\cucumber\\src\\support_code_library_builder\\build_helpers.js:81"
+            },
+            "result": {
+              "status": "passed"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "Typescript\\Protractor-Cucumber-TypeScript\\node_modules\\cucumber\\src\\support_code_library_builder\\build_helpers.js:81"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
