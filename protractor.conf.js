@@ -35,8 +35,8 @@ exports.config = {
         plugin: [ "pretty" ],
         strict: true,
         monochrome: true,
-        keepAlive: false
-        // tags: "@CucumberScenario or @ProtractorScenario or @TypeScriptScenario or @OutlineScenario or @AngularScenario",
+        keepAlive: false,
+        tags: "~@ignore"
     },
 
     framework: "custom",
@@ -56,7 +56,6 @@ exports.config = {
     },
 
     onPrepare: () => {
-        browser.ignoreSynchronization = true;
         browser.manage().window().maximize();
         // Reporter.createDirectory(jsonReports);
     },
