@@ -42,5 +42,6 @@ Feature: Feature to test homepage navigation to angular heroes app
             | Model       |
             | Price       |
         When I wait for data to load in the grid
-        When I scroll the grid
-        When I get max row
+        Then Rows should equal data length
+        # When I scroll the grid
+        # When I get max row

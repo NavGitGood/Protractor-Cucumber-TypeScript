@@ -4,9 +4,11 @@ import { expect } from 'chai';
 import { TableDefinition } from 'cucumber';
 import { BasePage } from './../page-objects/basepage.po'
 import { LazyGrid } from './../page-objects/lazy-grid.po'
+import { ServiceTest } from './../page-objects/service-test.po'
 
 const basepage = new BasePage();
 const lazyGrid = new LazyGrid();
+const serviceTest = new ServiceTest();
 
 @binding()
 class CommonSD {
@@ -73,6 +75,11 @@ class CommonSD {
     @when(/^I wait for data to load in the grid$/, null, 10000)
     async waitForGridLoad() {
         await lazyGrid.waitForGridLoad();
+    }
+
+    @when(/^Rows should equal data length$/, null, 10000)
+    async verifyRowCount() {
+        expect(await lazyGrid.getTotalRows()).to.equal(await serviceTest.FetchCarsDataLength());
     }
 
     @when(/^I scroll the grid$/, null, 10000)

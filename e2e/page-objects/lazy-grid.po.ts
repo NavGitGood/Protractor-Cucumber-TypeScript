@@ -20,6 +20,11 @@ export class LazyGrid {
         await browser.wait(ExpectedConditions.presenceOf($('div.ag-row[row-index="1"]')), 10000);
     }
 
+    async getTotalRows(): Promise<number> {
+        await this.scrollToEnd();
+        return await this.getHighestRowID() + 1;
+    }
+
     async getHeaders(): Promise<{}[]>  {
         return await this.headers.map(header => header.$('.ag-header-cell-text').getText());
     }
@@ -31,7 +36,12 @@ export class LazyGrid {
 
     async verticalScroll() {
         let scrollBy = await this.getBottomEdgeOfLastRow();
-        console.log('scrollBy: ' +scrollBy);
+        await browser.executeScript(`var x = document.getElementsByClassName("${this.viewPortClass}");
+                                    x[0].scrollTop = ${scrollBy};`);
+    }
+
+    async scrollToEnd() {
+        let scrollBy = await this.getContainerHeight();
         await browser.executeScript(`var x = document.getElementsByClassName("${this.viewPortClass}");
                                     x[0].scrollTop = ${scrollBy};`);
     }
