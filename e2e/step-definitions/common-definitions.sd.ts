@@ -12,51 +12,71 @@ const lazyGrid = new LazyGrid();
 class CommonSD {
 
     @given(/^I launch heroes app$/, null, 10000)
-    public async launchApp() {
+    async launchApp() {
         browser.waitForAngularEnabled(false);
         await browser.get('localhost:4200');
     }
 
     @given(/^I am on home page$/, null, 10000)
-    public async verifyHome() {
+    async verifyHome() {
         expect(await browser.getCurrentUrl()).to.contain('http://localhost:4200');
         await browser.waitForAngularEnabled(true);
     }
 
     @when(/^I click on \"(.*)\"$/, null, 10000)
-    public async openTab(tab: string) {
+    async openTab(tab: string) {
         await (await basepage.getTab(tab)).click();
     }
 
     @then(/^App title should be \"(.*)\"$/, null, 10000)
-    public async verifyTitle(title: string) {
+    async verifyTitle(title: string) {
         await browser.waitForAngularEnabled(true);
         expect(await browser.getTitle()).to.equal(title);
     }
 
     @then(/^\"(.*)\" resource should be loaded$/, null, 10000)
-    public async verifyResource(resource: string) {
+    async verifyResource(resource: string) {
         expect(await browser.getCurrentUrl()).to.contain(resource);
     }
 
     @then(/^Top Heroes should be as follows$/, null, 10000)
-    public async verifyTopHeroes(dataTable: TableDefinition) {
+    async verifyTopHeroes(dataTable: TableDefinition) {
         const heroes = await dataTable.rows();
         const topHeroes = await basepage.getTopHeroesAsArray();
         expect(heroes.every(hero => topHeroes.includes(hero.toString()))).to.be.true;
     }
 
     @then(/^My Heroes should be as follows$/, null, 10000)
-    public async verifyMyHeroes(dataTable: TableDefinition) {
+    async verifyMyHeroes(dataTable: TableDefinition) {
         const heroes = await dataTable.rows();
         const myHeroes = await basepage.getMyHeroesAsArray();
         expect(heroes.every(hero => myHeroes.includes(hero.toString()))).to.be.true;
     }
 
     @then(/^Headers should be as follows$/, null, 10000)
-    public async verifyGridHeaders(dataTable: TableDefinition) {
+    async verifyGridHeaders(dataTable: TableDefinition) {
         const headers = await dataTable.rows();
         const gridHeader = await lazyGrid.getHeaders();
-        expect(headers.every(header => gridHeader.includes(header))).to.be.true;
+        expect(headers.every(header => gridHeader.includes(header.toString()))).to.be.true;
+    }
+
+    @when(/^I get max row$/, null, 100000)
+    async maxRow() {
+        expect(await lazyGrid.getHighestRowID()).to.be.equal(26);
+    }
+
+    @then(/^All rows should be present$/, null, 100000)
+    async allRowsPresent() {
+        // expect(await lazyGrid.getHighestRowID()).to.be.equal(26);
+    }
+
+    @when(/^I wait for data to load in the grid$/, null, 10000)
+    async waitForGridLoad() {
+        await lazyGrid.waitForGridLoad();
+    }
+
+    @when(/^I scroll the grid$/, null, 10000)
+    async scrollGrid() {
+        await lazyGrid.verticalScroll();
     }
 }

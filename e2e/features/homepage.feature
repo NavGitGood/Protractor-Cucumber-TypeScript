@@ -41,3 +41,6 @@ Feature: Feature to test homepage navigation to angular heroes app
             | Make        |
             | Model       |
             | Price       |
+        When I wait for data to load in the grid
+        When I scroll the grid
+        When I get max row

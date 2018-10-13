@@ -1,5 +1,8 @@
 import { binding, given, when, then } from 'cucumber-tsflow';
 import { browser } from 'protractor';
+import { LazyGrid } from './../page-objects/lazy-grid.po'
+
+const lazyGrid = new LazyGrid();
 
 @binding()
 class TestSD {

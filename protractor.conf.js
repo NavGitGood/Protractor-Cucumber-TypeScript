@@ -16,19 +16,25 @@ const cucumberReporterOptions = {
 exports.config = {
 
     seleniumAddress: "http://127.0.0.1:4444/wd/hub",
-
-    SELENIUM_PROMISE_MANAGER: false,
-
+    // SELENIUM_PROMISE_MANAGER: false,
     baseUrl: "https://www.google.com",
-    directConnect: true,
+    // directConnect: true,
+    framework: "custom",
+    frameworkPath: require.resolve("protractor-cucumber-framework"),
+    reportPath: reportPath,
 
     capabilities: {
         browserName: "chrome",
     },
 
+    specs: [
+        "./e2e/features/*.feature",
+    ],
+
     cucumberOpts: {
         require: [
-            './e2e/step-definitions/*.ts'
+            './e2e/step-definitions/*.ts',
+            './e2e/support/*.ts'
         ],
         compiler: "ts:ts-node/register",
         format: 'json:./e2e/reports/' + executionDate + '/cucumber_report.json',
@@ -38,13 +44,6 @@ exports.config = {
         keepAlive: false,
         tags: "~@ignore"
     },
-
-    framework: "custom",
-    frameworkPath: require.resolve("protractor-cucumber-framework"),
-
-    specs: [
-        "./e2e/features/*.feature",
-    ],
 
     beforeLaunch() {
         mkdir.sync(reportPath);
