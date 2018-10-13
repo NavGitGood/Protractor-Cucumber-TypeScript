@@ -14,4 +14,5 @@ Add new job for you project and in build, add a build step "Execute Windows Batc
 call "N:\Protractor_Cucumber_Typescript\jenkins_job.bat" %py% %p%
 
 To start jenkins, go to directory where jenkins.war is present and run java -jar jenkins.war
-To stop jenkins, use url http://localhost:8080/exit in browser
+To stop jenkins, use url http://localhost:8080/exit in browser (unsafe) OR Close CMD from where jenkins was started
+
